@@ -84,30 +84,22 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseEndpoints(enpoint =>{
-    // /hello
-    enpoint.MapGet("/Hello", async (context) => {
-        await context.Response.WriteAsync("Hello");
-    });
-
-    enpoint.MapRazorPages();
-    enpoint.MapControllerRoute(
-        name: "First",
-        pattern: "productInfo/{id?}",
-        defaults: new {
-            controller = "First",
-            action = "View"
-        }
-    );
-
 });
 
-app.MapAreaControllerRoute(
-    name: "product",
-    pattern: "/{area}/{controller}/{action=Index}/{id?}",
-    areaName: "ProductManage"
-);
+// app.MapAreaControllerRoute(
+//     name: "product",
+//     pattern: "/{area}/{controller}/{action=Index}/{id?}",
+//     areaName: "ProductManage"
+// );
+
+// app.MapAreaControllerRoute(
+//     name: "areas",
+//     pattern: "/{area:exists}/{controller=Home}/{action=Index}/{id?}",
+//     areaName: "areas"
+// );
 app.MapControllerRoute(
     name: "default",
     pattern: "/{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
