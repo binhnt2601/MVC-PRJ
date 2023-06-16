@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace App.Areas.Contact.Controllers
 {
-    // [Area("Contact")]
+    [Area("Contact")]
+    [Authorize(Roles = RoleName.Administrator)]
     public class ContactController : Controller
     {
         private readonly AppDbContext _context;
@@ -52,7 +53,7 @@ namespace App.Areas.Contact.Controllers
 
         // GET: Contact/Create
         [HttpGet("/contact")]
-        
+        [AllowAnonymous]
         public IActionResult Create()
         {
             return View();

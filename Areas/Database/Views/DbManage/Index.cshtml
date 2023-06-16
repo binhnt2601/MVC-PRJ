@@ -48,6 +48,7 @@ else
         }   
     </ul>
     <a class="btn btn-danger" asp-action="DeleteDatabase">Delete Database: @dbName</a>
+    <a class="btn btn-danger" asp-action="SeedData">SeedData: @dbName</a>
 }
 
 @if(dbContext.Database.GetPendingMigrations().Any())

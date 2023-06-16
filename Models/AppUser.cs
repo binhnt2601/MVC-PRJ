@@ -1,19 +1,18 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace App.Models {
+namespace App.Models 
+{
+    public class AppUser: IdentityUser 
+    {
+          [Column(TypeName = "nvarchar")]
+          [StringLength(400)]  
+          public string HomeAdress { get; set; }
 
-    public class AppUser : IdentityUser {
-
-        [MaxLength (100)]
-        public string FullName { set; get; }
-
-        [MaxLength (255)]
-        public string Address { set; get; }
-
-        [DataType (DataType.Date)]
-        public DateTime? Birthday { set; get; }
-
+          // [Required]       
+          [DataType(DataType.Date)]
+          public DateTime? BirthDate { get; set; }
     }
 }
