@@ -1,0 +1,22 @@
+.app-navbar {
+    background: rgba(0,0,0,0.8);
+    .text-dark {
+      color: #e0d9dbdc !important;
+      &:hover {
+        color: white !important;
+      }
+    }
+
+    .navbar-brand {  
+      color: #a57dea !important; 
+    }
+
+    .btn-outline-danger {
+      color: #a57dea;
+      border-color: #a57dea;
+      &:hover {
+        background: #a57dea;
+        color: white;
+      }    
+    }
+  }

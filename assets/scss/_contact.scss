@@ -1,0 +1,31 @@
+.contact-firstcol {
+    background-color: #7069d7;
+    color: white;
+    text-align: center;
+
+    border-radius: 15px;
+
+    h4 {
+        line-height: 40px;
+        font-weight: 400;
+        margin-top: 20px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.formcontact {
+    .control-label {
+        font-weight: 700;
+    }
+
+    .btn-primary {
+        margin-top: 10px;
+        background-color: #7069d7;
+        font-weight: 700;
+        margin-left: 45%;
+    }
+}

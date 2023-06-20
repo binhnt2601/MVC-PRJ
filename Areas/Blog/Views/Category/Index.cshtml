@@ -1,0 +1,59 @@
+@model IEnumerable<App.Models.Blog.Category>
+@using App.Models.Blog
+
+@{
+    ViewData["Title"] = "Chuyên mục Blog";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary btn-sm" asp-action="Create">Thêm Mới +</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        await renderCategory(item, 0);
+}
+    </tbody>
+</table>
+
+@{
+    async Task renderCategory(Category item, int lvl)
+    {
+        string prefix = string.Concat(Enumerable.Repeat("&nbsp;&nbsp;&nbsp", lvl));
+        <tr>
+            <td>
+                @Html.Raw(prefix) @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slug)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+
+        @if(item.CategoryChildren?.Count > 0)
+        {
+            foreach (var childrenCategory in item.CategoryChildren)
+            {
+                await renderCategory(childrenCategory, lvl+1);
+            }
+        }
+    }
+}
