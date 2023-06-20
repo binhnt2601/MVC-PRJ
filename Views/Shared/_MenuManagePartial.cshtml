@@ -8,11 +8,12 @@
 {
   <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn btn btn-outline-danger dropdown-toggle"><strong>Manage</strong></button>
-  <div id="myDropdown" class="dropdown-content">
+  <div id="myDropdown" class="dropdown-content dropdown-menu-right">
     <a class="dropdown-item" asp-controller="DbManage" action="Index" asp-area="Database">Database</a>
     <a class="dropdown-item" asp-controller="Contact" action="Index" asp-area="Contact">Contact</a>
     <a class="dropdown-item" asp-controller="Role" action="Index" asp-area="Identity">Role</a>
     <a class="dropdown-item" asp-controller="User" action="Index" asp-area="Identity">User</a>
+    <a class="dropdown-item" asp-controller="Category" action="Index" asp-area="Blog">Blog Category</a>
   </div>
   
 </div>
@@ -30,8 +31,9 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
-  min-width: 87px;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }

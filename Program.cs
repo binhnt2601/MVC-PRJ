@@ -98,9 +98,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseEndpoints(enpoint =>
-{
-});
 
 // app.MapAreaControllerRoute(
 //     name: "product",

@@ -4,6 +4,7 @@ using App.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasicMVC.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230616102613_AddCategory")]
+    partial class AddCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,68 +24,6 @@ namespace BasicMVC.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("App.Areas.Blog.Models.Post", b =>
-                {
-                    b.Property<int>("PostId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PostId"));
-
-                    b.Property<string>("AuthorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Published")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Slug")
-                        .HasMaxLength(160)
-                        .HasColumnType("nvarchar(160)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("nvarchar(160)");
-
-                    b.HasKey("PostId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("Slug")
-                        .IsUnique()
-                        .HasFilter("[Slug] IS NOT NULL");
-
-                    b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("App.Areas.Blog.Models.PostCategory", b =>
-                {
-                    b.Property<int>("PostID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
-                    b.HasKey("PostID", "CategoryID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.ToTable("PostCategory");
-                });
 
             modelBuilder.Entity("App.Models.AppUser", b =>
                 {
@@ -156,7 +97,7 @@ namespace BasicMVC.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("App.Models.Blog.Category", b =>
+            modelBuilder.Entity("App.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -184,8 +125,7 @@ namespace BasicMVC.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
-                    b.HasIndex("Slug")
-                        .IsUnique();
+                    b.HasIndex("Slug");
 
                     b.ToTable("Category");
                 });
@@ -356,39 +296,9 @@ namespace BasicMVC.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("App.Areas.Blog.Models.Post", b =>
+            modelBuilder.Entity("App.Models.Category", b =>
                 {
-                    b.HasOne("App.Models.AppUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-                });
-
-            modelBuilder.Entity("App.Areas.Blog.Models.PostCategory", b =>
-                {
-                    b.HasOne("App.Models.Blog.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("App.Areas.Blog.Models.Post", "Post")
-                        .WithMany("PostCategories")
-                        .HasForeignKey("PostID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Post");
-                });
-
-            modelBuilder.Entity("App.Models.Blog.Category", b =>
-                {
-                    b.HasOne("App.Models.Blog.Category", "ParentCategory")
+                    b.HasOne("App.Models.Category", "ParentCategory")
                         .WithMany("CategoryChildren")
                         .HasForeignKey("ParentCategoryId");
 
@@ -446,12 +356,7 @@ namespace BasicMVC.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("App.Areas.Blog.Models.Post", b =>
-                {
-                    b.Navigation("PostCategories");
-                });
-
-            modelBuilder.Entity("App.Models.Blog.Category", b =>
+            modelBuilder.Entity("App.Models.Category", b =>
                 {
                     b.Navigation("CategoryChildren");
                 });
