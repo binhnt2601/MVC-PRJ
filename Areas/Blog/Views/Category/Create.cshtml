@@ -44,3 +44,8 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@{
+    var Summernote = new App.Models.Summernote("Discription");
+}
+<partial name="_Summernote" model="Summernote"></partial>
+
