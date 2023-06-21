@@ -17,6 +17,7 @@ namespace App.Models
                 ['font', ['strikethrough', 'superscript', 'subscript']],
                 ['fontsize', ['fontsize']],
                 ['color', ['color']],
+                ['insert', ['link', 'elfinder']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['height', ['height']],
                 ['view', ['fullscreen', 'codeview', 'help']]
