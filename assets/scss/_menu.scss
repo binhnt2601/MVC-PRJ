@@ -16,7 +16,40 @@
       border-color: #a57dea;
       &:hover {
         background: #a57dea;
-        color: white;
+        color: black;
       }    
+    }
+
+    .dropdown-toggle {
+      border-color: #a57dea in !important;
+      color: white;
+      &:active {
+        border-color: aliceblue;
+      }
+    }
+  }
+
+  .categorySidebar {
+    ul, li {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      &:hover {
+        color: #a57dea;
+      }
+    }
+    >ul>li>a {
+      font-weight: bold;
+    }
+    .activeCategory {
+      font-size: x-large;
+      color: #a57dea;
+      font-weight: 700;
+    }
+    h3 {
+      border-bottom: 7px solid black;
+      padding-bottom: 10px;
     }
   }

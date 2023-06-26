@@ -1,0 +1,62 @@
+@using App.Components
+@using App.Models.Blog
+@using App.Areas.Blog.Models
+@model App.Areas.Blog.Models.Post
+
+@{
+    List<Category> categories = ViewBag.categories;
+    Category category = ViewBag.category;
+    ViewData["Title"] = Model.Title;
+    List<Post> relativePosts = ViewBag.relativePosts;
+}
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="ViewPost" asp-action="Index" asp-route-slug="">Blog</a></li>
+            @if (category != null)
+            {
+                var lis = category.ListParents();
+                foreach (var li in lis)
+                {
+                    <li class="breadcrumb-item"><a asp-controller="ViewPost" asp-action="Index"
+                            asp-route-slug="@li.Slug">@li.Title</a></li>
+                }
+                <li class="breadcrumb-item"><a asp-controller="ViewPost" asp-action="Index"
+                            asp-route-slug="@category.Slug">@category.Title</a></li>
+            }
+        </ol>
+    </nav>
+
+<div class="postContent">
+    <h1>@Model.Title</h1>
+    <small>
+        <i>Ngày cập nhật: @Model.DateUpdated</i>
+        <p>
+            Tác giả: <strong>@Model.Author</strong>
+        </p>
+    </small>
+    <div class="sapo">@Model.Description</div>
+    <hr />
+    @Html.Raw(Model.Content)
+</div>
+
+
+@section Sidebar {
+    @{
+        @await Component.InvokeAsync(CategorySidebar.COMPONENTNAME,
+            new CategorySidebar.CategorySidebarData() {
+                level = 0,
+                categories = categories,
+                slugCategory = category.Slug
+            })
+    }
+    <h4><b>Bài viết liên quan</b></h4>
+    <ul class="list-group">
+    @foreach (var post in relativePosts)
+    {
+        <li class="list-group-item">
+            <a asp-action="Details" asp-route-postSlug="@post.Slug">@post.Title</a>
+        </li>
+    }
+</ul>
+}

@@ -34,7 +34,37 @@ body {
 }
 .app-navbar .btn-outline-danger:hover {
   background: #a57dea;
+  color: black;
+}
+.app-navbar .dropdown-toggle {
+  border-color: #a57dea in !important;
   color: white;
+}
+.app-navbar .dropdown-toggle:active {
+  border-color: aliceblue;
+}
+
+.categorySidebar ul, .categorySidebar li {
+  list-style: none;
+}
+.categorySidebar a {
+  text-decoration: none;
+  color: black;
+}
+.categorySidebar a:hover {
+  color: #a57dea;
+}
+.categorySidebar > ul > li > a {
+  font-weight: bold;
+}
+.categorySidebar .activeCategory {
+  font-size: x-large;
+  color: #a57dea;
+  font-weight: 700;
+}
+.categorySidebar h3 {
+  border-bottom: 7px solid black;
+  padding-bottom: 10px;
 }
 
 .contact-firstcol {
@@ -61,4 +91,16 @@ body {
   background-color: #7069d7;
   font-weight: 700;
   margin-left: 45%;
+}
+
+.footer {
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  color: white;
+}
+.footer a {
+  text-decoration: none !important;
+  color: #a57dea;
+  font-weight: 700;
+  font-size: larger;
 }
